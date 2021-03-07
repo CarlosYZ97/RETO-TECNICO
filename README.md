@@ -51,7 +51,6 @@ Tests Unitarios
 
 ```
 CREANDO FICHEROS
-
 sls create test -f createPeople
 sls create test -f getAllPeople
 sls create test -f updatePeople
@@ -68,5 +67,4 @@ Deploy AWS
 ```
 sls deploy
 sls remove
-
 ```
