@@ -12,30 +12,31 @@ Crear un endpoint GET que muestre la data almacenada.
 
 ### Ficheros
 
-├───controllers/
-│   ├───peopleController.js
-│   └───planetController.js
-├───database/
-│   └───dynamoDB.js
-├───helpers/
-│   ├───consumers/
-│   │   └───starwars.js
-│   └───response/
-│       └───apiResponses.js
-├───models/
-│   ├───peopleModel.js
-│   └───planetMode.js
-├───test/
-│   ├───createPeople.js
-│   ├───getAllPeople.js
-│   └───updatePeople.js
-├───util/
-│   └───sortBtId.js
-├───.gitignore
-├───package-lock.json
-├───package.json
-├───README.md
-└───serverless.yml
+    .
+    ├───controllers/
+    │   ├───peopleController.js
+    │   └───planetController.js
+    ├───database/
+    │   └───dynamoDB.js
+    ├───helpers/
+    │   ├───consumers/
+    │   │   └───starwars.js
+    │   └───response/
+    │       └───apiResponses.js
+    ├───models/
+    │   ├───peopleModel.js
+    │   └───planetMode.js
+    ├───test/
+    │   ├───createPeople.js
+    │   ├───getAllPeople.js
+    │   └───updatePeople.js
+    ├───util/
+    │   └───sortBtId.js
+    ├───.gitignore
+    ├───package-lock.json
+    ├───package.json
+    ├───README.md
+    └───serverless.yml
 
 
 
