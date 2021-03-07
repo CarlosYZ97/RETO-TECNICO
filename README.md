@@ -50,7 +50,6 @@ sls create -t aws-nodejs
 Tests Unitarios
 
 ```
-
 CREANDO FICHEROS
 
 sls create test -f createPeople
@@ -64,4 +63,10 @@ sls invoke test -f getAllPeople
 sls invoke test -f updatePeople
 ```
 
+Deploy AWS
 
+```
+sls deploy
+sls remove
+
+```
