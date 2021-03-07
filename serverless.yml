@@ -4,6 +4,7 @@ plugins:
   - serverless-offline
   - serverless-plugin-include-dependencies
   - serverless-mocha-plugin
+  - serverless-aws-documentation
 
 package:
   exclude:
@@ -16,6 +17,17 @@ custom:
     POST_TABLE_PEOPLE: people
     POST_TABLE_PLANET: planet
     URL_STARTWARS: https://swapi.py4e.com/api
+  documentation:
+    api:
+      info:
+        version: "1" # see note above about this being ignored
+        title: "RestAPI - SWAPI" # see note above about this being ignored
+        description: "Adaptar y transformar los modelos de la API de prueba. Se tienen que mapear todos los nombres de atributos modelos del inglés al español (Ej: name -> nombre)."
+        termsOfService: "http://www.example.com/terms-of-service"
+        contact:
+          name: "Carlos Yunca"
+          url: "http://www.example.com/me"
+          email: "carlosyunca62@gmail.com"
 
 provider:
   name: aws
@@ -48,12 +60,45 @@ functions:
             parameters:
               paths:
                 number: true
+          documentation:
+            summary: "Crear un registro de persona"
+            description: "En caso no exista el id de people creará el registro en dynamoDB"
+            pathParams:
+              -
+                name: "number"
+                description: "id del registro people del API SWAPI"
+            methodResponses:
+            -
+              statusCode: "200"
+              responseBody:
+                description: "Se obtuvo el registro de la base de datos"
+            -
+              statusCode: "201"
+              responseBody:
+                description: "Se creó correctamente el registro"
+            -
+              statusCode: "500"
+              responseBody:
+                description: "Error en el servicio"
+
   getAllPeople:
     handler: controllers/peopleController.getAllPeople
     events:
       - http:
           path: /getAllPeople
           method: get
+          documentation:
+            summary: "Obtener todos los registros"
+            description: "Obtiene todos los registros de la tabla people"
+            methodResponses:
+            -
+              statusCode: "200"
+              responseBody:
+                description: "Se obtuvo todos los registros"
+            -
+              statusCode: "500"
+              responseBody:
+                description: "Error en el servicio"
   updatePeople:
     handler: controllers/peopleController.updatePeople
     events:
@@ -64,6 +109,24 @@ functions:
             parameters:
               paths:
                 id: true
+          documentation:
+            summary: "Se actualizará el registro people"
+            description: "Se actualizará el registro people"
+            pathParams:
+              -
+                name: "number"
+                description: "id del registro people del API SWAPI"
+            requestBody:
+              description: '{"paramName":"campo","paramValue":"valor"}'
+            methodResponses:
+            -
+              statusCode: "200"
+              responseBody:
+                description: "Se actualizó con éxito"
+            -
+              statusCode: "500"
+              responseBody:
+                description: "Error en el servicio"
 
   deletePeople:
     handler: controllers/peopleController.deletePeople
@@ -75,6 +138,22 @@ functions:
             parameters:
               paths:
                 id: true
+          documentation:
+            summary: "Se elimina un registro de la tabla people"
+            description: "Se eliminará el registro del id ingresado en dynamoDB"
+            pathParams:
+              -
+                name: "id"
+                description: "id del registro people del API SWAPI"
+            methodResponses:
+            -
+              statusCode: "200"
+              responseBody:
+                description: "Se obtuvo eliminó correctamete de la base de datos"
+            -
+              statusCode: "500"
+              responseBody:
+                description: "Error en el servicio"
 
   createPlanet:
     handler: controllers/planetController.createPlanet
@@ -86,12 +165,44 @@ functions:
             parameters:
               paths:
                 number: true
+          documentation:
+            summary: "Crear un registro de planet"
+            description: "En caso no exista el id de planet creará el registro en dynamoDB"
+            pathParams:
+              -
+                name: "number"
+                description: "id del registro planet del API SWAPI"
+            methodResponses:
+            -
+              statusCode: "200"
+              responseBody:
+                description: "Se obtuvo el registro de la base de datos"
+            -
+              statusCode: "201"
+              responseBody:
+                description: "Se creó correctamente el registro"
+            -
+              statusCode: "500"
+              responseBody:
+                description: "Error en el servicio"
   getAllPlanets:
     handler: controllers/planetController.getAllPlanets
     events:
       - http:
           path: /getAllPlanets
           method: get
+          documentation:
+            summary: "Obtener todos los registros"
+            description: "Obtiene todos los registros de la tabla planet"
+            methodResponses:
+            -
+              statusCode: "200"
+              responseBody:
+                description: "Se obtuvo todos los registros"
+            -
+              statusCode: "500"
+              responseBody:
+                description: "Error en el servicio"
   updatePlanet:
     handler: controllers/planetController.updatePlanet
     events:
@@ -102,6 +213,24 @@ functions:
             parameters:
               paths:
                 id: true
+          documentation:
+            summary: "Se actualizará el registro planet"
+            description: "Se actualizará el registro planet"
+            pathParams:
+              -
+                name: "number"
+                description: "id del registro planet del API SWAPI"
+            requestBody:
+              description: '{"paramName":"campo","paramValue":"valor"}'
+            methodResponses:
+            -
+              statusCode: "200"
+              responseBody:
+                description: "Se actualizó con éxito"
+            -
+              statusCode: "500"
+              responseBody:
+                description: "Error en el servicio"
 
   deletePlanet:
     handler: controllers/planetController.deletePlanet
@@ -113,6 +242,22 @@ functions:
             parameters:
               paths:
                 id: true
+          documentation:
+            summary: "Se elimina un registro de la tabla planet"
+            description: "Se eliminará el registro del id ingresado en dynamoDB"
+            pathParams:
+              -
+                name: "id"
+                description: "id del registro planet del API SWAPI"
+            methodResponses:
+            -
+              statusCode: "200"
+              responseBody:
+                description: "Se obtuvo eliminó correctamete de la base de datos"
+            -
+              statusCode: "500"
+              responseBody:
+                description: "Error en el servicio"
 resources:
   Resources:
     PostsTable: ## or '<DynamoDBTableName>'

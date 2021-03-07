@@ -1,0 +1,189 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Adaptar y transformar los modelos de la API de prueba. Se tienen que mapear todos los nombres de atributos modelos del inglés al español (Ej: name -> nombre).",
+    "version" : "2021-03-07T02:01:04Z",
+    "title" : "dev-api-rimac",
+    "termsOfService" : "http://www.example.com/terms-of-service",
+    "contact" : {
+      "name" : "Carlos Yunca",
+      "url" : "http://www.example.com/me",
+      "email" : "carlosyunca62@gmail.com"
+    }
+  },
+  "host" : "4g31l4v4fc.execute-api.us-east-1.amazonaws.com",
+  "basePath" : "/dev",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/createPeople/{number}" : {
+      "post" : {
+        "summary" : "Crear un registro de persona",
+        "description" : "En caso no exista el id de people creará el registro en dynamoDB",
+        "parameters" : [ {
+          "name" : "number",
+          "in" : "path",
+          "description" : "id del registro people del API SWAPI",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response"
+          },
+          "201" : {
+            "description" : "201 response"
+          },
+          "500" : {
+            "description" : "500 response"
+          }
+        }
+      }
+    },
+    "/createPlanet/{number}" : {
+      "post" : {
+        "summary" : "Crear un registro de planet",
+        "description" : "En caso no exista el id de planet creará el registro en dynamoDB",
+        "parameters" : [ {
+          "name" : "number",
+          "in" : "path",
+          "description" : "id del registro planet del API SWAPI",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response"
+          },
+          "201" : {
+            "description" : "201 response"
+          },
+          "500" : {
+            "description" : "500 response"
+          }
+        }
+      }
+    },
+    "/deletePeople/{id}" : {
+      "delete" : {
+        "summary" : "Se elimina un registro de la tabla people",
+        "description" : "Se eliminará el registro del id ingresado en dynamoDB",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "id del registro people del API SWAPI",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response"
+          },
+          "500" : {
+            "description" : "500 response"
+          }
+        }
+      }
+    },
+    "/deletePlanet/{id}" : {
+      "delete" : {
+        "summary" : "Se elimina un registro de la tabla planet",
+        "description" : "Se eliminará el registro del id ingresado en dynamoDB",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "id del registro planet del API SWAPI",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response"
+          },
+          "500" : {
+            "description" : "500 response"
+          }
+        }
+      }
+    },
+    "/getAllPeople" : {
+      "get" : {
+        "summary" : "Obtener todos los registros",
+        "description" : "Obtiene todos los registros de la tabla people",
+        "responses" : {
+          "200" : {
+            "description" : "200 response"
+          },
+          "500" : {
+            "description" : "500 response"
+          }
+        }
+      }
+    },
+    "/getAllPlanets" : {
+      "get" : {
+        "summary" : "Obtener todos los registros",
+        "description" : "Obtiene todos los registros de la tabla planet",
+        "responses" : {
+          "200" : {
+            "description" : "200 response"
+          },
+          "500" : {
+            "description" : "500 response"
+          }
+        }
+      }
+    },
+    "/updatePeople/{id}" : {
+      "put" : {
+        "summary" : "Se actualizará el registro people",
+        "description" : "Se actualizará el registro people",
+        "parameters" : [ {
+          "name" : "number",
+          "in" : "path",
+          "description" : "id del registro people del API SWAPI",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response"
+          },
+          "500" : {
+            "description" : "500 response"
+          }
+        }
+      }
+    },
+    "/updatePlanet/{id}" : {
+      "put" : {
+        "summary" : "Se actualizará el registro planet",
+        "description" : "Se actualizará el registro planet",
+        "parameters" : [ {
+          "name" : "number",
+          "in" : "path",
+          "description" : "id del registro planet del API SWAPI",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response"
+          },
+          "500" : {
+            "description" : "500 response"
+          }
+        }
+      }
+    }
+  }
+}
