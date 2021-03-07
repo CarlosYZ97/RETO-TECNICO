@@ -18,7 +18,7 @@ module.exports.createPlanet = async(event, context, callback) => {
                     type: 2, // indicando que es para planets
                     ...planetConsumer
                 }
-                const resSave = await dynamo.saveItem(postsTablePlanet, post);
+                await dynamo.saveItem(postsTablePlanet, post);
                 return callback(null, Responses._201(post));
             }
         } else {
@@ -44,7 +44,7 @@ module.exports.updatePlanet = async(event, context, callback) => {
         const idPlanet = event.pathParameters.id;
         const { paramName, paramValue } = JSON.parse(event.body);
 
-        const res = await dynamo.updateItem(idPlanet, postsTablePlanet, paramName, paramValue);
+        await dynamo.updateItem(idPlanet, postsTablePlanet, paramName, paramValue);
         return callback(null, Responses._200({ message: 'Actualizado con éxito' }));
     } catch (error) {
         return callback(null, Responses._500(error))
