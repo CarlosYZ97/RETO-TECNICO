@@ -1,0 +1,144 @@
+service: api-rimac
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-include-dependencies
+  - serverless-mocha-plugin
+
+package:
+  exclude:
+    - node_modules/**
+
+frameworkVersion: '2'
+
+custom:
+  settings:
+    POST_TABLE_PEOPLE: people
+    POST_TABLE_PLANET: planet
+    URL_STARTWARS: https://swapi.py4e.com/api
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+  lambdaHashingVersion: 20201221
+  stage: dev
+  environment: ${self:custom.settings}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+      - "arn:aws:dynamodb:us-east-1:*:table/people"
+      - "arn:aws:dynamodb:us-east-1:*:table/planet"
+
+functions:
+  createPeople:
+    handler: controllers/peopleController.createPeople
+    events:
+      - http:
+          path: /createPeople/{number}
+          method: post
+          request:
+            parameters:
+              paths:
+                number: true
+  getAllPeople:
+    handler: controllers/peopleController.getAllPeople
+    events:
+      - http:
+          path: /getAllPeople
+          method: get
+  updatePeople:
+    handler: controllers/peopleController.updatePeople
+    events:
+      - http:
+          path: /updatePeople/{id}
+          method: put
+          request:
+            parameters:
+              paths:
+                id: true
+
+  deletePeople:
+    handler: controllers/peopleController.deletePeople
+    events:
+      - http:
+          path: /deletePeople/{id}
+          method: delete
+          request:
+            parameters:
+              paths:
+                id: true
+
+  createPlanet:
+    handler: controllers/planetController.createPlanet
+    events:
+      - http:
+          path: /createPlanet/{number}
+          method: post
+          request:
+            parameters:
+              paths:
+                number: true
+  getAllPlanets:
+    handler: controllers/planetController.getAllPlanets
+    events:
+      - http:
+          path: /getAllPlanets
+          method: get
+  updatePlanet:
+    handler: controllers/planetController.updatePlanet
+    events:
+      - http:
+          path: /updatePlanet/{id}
+          method: put
+          request:
+            parameters:
+              paths:
+                id: true
+
+  deletePlanet:
+    handler: controllers/planetController.deletePlanet
+    events:
+      - http:
+          path: /deletePlanet/{id}
+          method: delete
+          request:
+            parameters:
+              paths:
+                id: true
+resources:
+  Resources:
+    PostsTable: ## or '<DynamoDBTableName>'
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+        - AttributeName: "id"
+          AttributeType: "S"
+        KeySchema:
+        - AttributeName: "id"
+          KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: people
+
+    PlanetTable: ## or '<DynamoDBTableName>'
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+        - AttributeName: "id"
+          AttributeType: "S"
+        KeySchema:
+        - AttributeName: "id"
+          KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: planet
