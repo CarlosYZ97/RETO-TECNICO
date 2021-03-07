@@ -1,6 +1,6 @@
-### ServerlessJS + AWS + Lambda + DynamoDB
+# ServerlessJS + AWS + Lambda + DynamoDB
 
-# Visión General
+### Visión General
 
 Crear una API en Node.js con el framework Serverless.js para un despliegue en AWS.
 Adaptar y transformar los modelos de la API de prueba. Se tienen que mapear todos los nombres de atributos modelos del inglés al español (Ej: name -> nombre).
