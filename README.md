@@ -38,7 +38,7 @@
     ├───README.md
     └───serverless.yml
 
-### Pre-requisitos 📋
+### Instalación 🔧
 
 Configurar los environment de AWS
 
