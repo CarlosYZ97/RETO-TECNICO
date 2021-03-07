@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "info" : {
     "description" : "Adaptar y transformar los modelos de la API de prueba. Se tienen que mapear todos los nombres de atributos modelos del inglés al español (Ej: name -> nombre).",
-    "version" : "2021-03-07T02:01:04Z",
+    "version" : "2021-03-07T02:54:08Z",
     "title" : "dev-api-rimac",
     "termsOfService" : "http://www.example.com/terms-of-service",
     "contact" : {
@@ -133,19 +133,19 @@
         }
       }
     },
+    "/swagger" : {
+      "get" : {
+        "responses" : { }
+      }
+    },
     "/updatePeople/{id}" : {
       "put" : {
         "summary" : "Se actualizará el registro people",
         "description" : "Se actualizará el registro people",
         "parameters" : [ {
-          "name" : "number",
-          "in" : "path",
-          "description" : "id del registro people del API SWAPI",
-          "required" : false,
-          "type" : "string"
-        }, {
           "name" : "id",
           "in" : "path",
+          "description" : "id del registro people del API SWAPI",
           "required" : true,
           "type" : "string"
         } ],
@@ -164,14 +164,9 @@
         "summary" : "Se actualizará el registro planet",
         "description" : "Se actualizará el registro planet",
         "parameters" : [ {
-          "name" : "number",
-          "in" : "path",
-          "description" : "id del registro planet del API SWAPI",
-          "required" : false,
-          "type" : "string"
-        }, {
           "name" : "id",
           "in" : "path",
+          "description" : "id del registro planet del API SWAPI",
           "required" : true,
           "type" : "string"
         } ],

@@ -114,7 +114,7 @@ functions:
             description: "Se actualizará el registro people"
             pathParams:
               -
-                name: "number"
+                name: "id"
                 description: "id del registro people del API SWAPI"
             requestBody:
               description: '{"paramName":"campo","paramValue":"valor"}'
@@ -216,12 +216,12 @@ functions:
           documentation:
             summary: "Se actualizará el registro planet"
             description: "Se actualizará el registro planet"
-            pathParams:
-              -
-                name: "number"
-                description: "id del registro planet del API SWAPI"
             requestBody:
               description: '{"paramName":"campo","paramValue":"valor"}'
+            pathParams:
+              -
+                name: "id"
+                description: "id del registro planet del API SWAPI"
             methodResponses:
             -
               statusCode: "200"
