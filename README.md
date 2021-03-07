@@ -8,7 +8,7 @@
 - Crear un modelo de su elección mediante el uso de un endpoint POST, la data se tendrá que almacenar dentro de una base de datos.
 - Crear un endpoint GET que muestre la data almacenada.
 
-[API de prueba SWAPI: https://swapi.py4e.com/documentation](https://swapi.py4e.com/documentation)
+[API de prueba SWAPI: https://swapi.py4e.com/documentation](https://4g31l4v4fc.execute-api.us-east-1.amazonaws.com/dev/swagger)
 
 ### Ficheros
 
@@ -37,6 +37,10 @@
     ├───package.json
     ├───README.md
     └───serverless.yml
+
+### Documentación de APIS
+
+[Documentación de APIS en SWAGGER](https://4g31l4v4fc.execute-api.us-east-1.amazonaws.com/dev/swagger)
 
 ### Instalación 🔧
 

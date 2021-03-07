@@ -258,6 +258,13 @@ functions:
               statusCode: "500"
               responseBody:
                 description: "Error en el servicio"
+  swagger:
+    handler: controllers/swaggerController.swagger
+    events:
+      - http:
+          path: /swagger
+          method: get
+
 resources:
   Resources:
     PostsTable: ## or '<DynamoDBTableName>'
