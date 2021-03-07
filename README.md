@@ -39,5 +39,29 @@ Crear un endpoint GET que muestre la data almacenada.
     └───serverless.yml
 
 
+Plantilla Serverless
+
+```
+sls create -t aws-nodejs
+```
+
+
+
+Tests Unitarios
+
+```
+
+CREANDO FICHEROS
+
+sls create test -f createPeople
+sls create test -f getAllPeople
+sls create test -f updatePeople
+
+EJECUTANDO PRUEBAS
+
+sls invoke test -f createPeople 
+sls invoke test -f getAllPeople
+sls invoke test -f updatePeople
+```
 
 
