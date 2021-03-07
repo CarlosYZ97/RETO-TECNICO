@@ -22,6 +22,6 @@ describe('updatePeople', () => {
         });
         expect(response.statusCode).equal(200);
         expect(response.body).to.not.be.empty;
-        expect(JSON.parse(response.body).message).equal("Update Success");
+        expect(JSON.parse(response.body).message).equal("Actualizado con éxito");
     });
 });

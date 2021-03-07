@@ -1,5 +1,5 @@
 const Responses = require("../helpers/response/apiResponses");
-const consumer = require('../helpers/consumers/starwars');
+const consumerApi = require('../helpers/consumers/starwars');
 const dynamo = require("../database/dynamoDB");
 const md5 = require('md5');
 const sortBtId = require('../util/sortBtId');
@@ -11,7 +11,7 @@ module.exports.createPeople = async(event, context, callback) => {
         const res = await dynamo.getByID(md5(numberPeople), postsTablePeople);
         console.log(res)
         if (!res || !res.Item) {
-            const peopleConsumer = await consumer.getPeople(numberPeople);
+            const peopleConsumer = await consumerApi.getPeople(numberPeople);
 
             if (peopleConsumer) {
                 const post = {
@@ -20,8 +20,7 @@ module.exports.createPeople = async(event, context, callback) => {
                     type: 1, // indicando que es para peoples
                     ...peopleConsumer
                 }
-                const resSave = await dynamo.saveItem(postsTablePeople, post);
-                console.log(resSave);
+                await dynamo.saveItem(postsTablePeople, post);
                 return callback(null, Responses._201(post));
             }
         } else {
@@ -39,8 +38,8 @@ module.exports.updatePeople = async(event, context, callback) => {
         const idPost = md5(event.pathParameters.id);
         const { paramName, paramValue } = JSON.parse(event.body);
 
-        const res = await dynamo.updateItem(idPost, postsTablePeople, paramName, paramValue);
-        return callback(null, Responses._200({ message: 'Update Success' }));
+        await dynamo.updateItem(idPost, postsTablePeople, paramName, paramValue);
+        return callback(null, Responses._200({ message: 'Actualizado con éxito' }));
     } catch (error) {
         return callback(null, Responses._500(error))
     }
@@ -51,7 +50,7 @@ module.exports.deletePeople = async(event, context, callback) => {
     try {
         const idPost = md5(event.pathParameters.id);
         await dynamo.deleteItem(idPost, postsTablePeople);
-        return callback(null, Responses._200({ message: 'Delete Success' }));
+        return callback(null, Responses._200({ message: 'Eliminado con éxito' }));
     } catch (error) {
         return callback(null, Responses._500(error));
     }
